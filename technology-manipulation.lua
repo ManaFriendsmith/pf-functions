@@ -40,8 +40,8 @@ local function RemovePrerequisite(tech, prereq)
     end
 end
 
---tech must be the name of a technology prototype or a technology prototype
---unlock must be the name of a recipe or a technology effect modifier
+--tech must be a technology prototype or the name of a technology prototype
+--unlock must be a technology effect modifier or the name of a recipe
 --after determines where to insert it in the list of unlocks, for aesthetic purposes.
 --string: after the specified recipe, at the end if not found.
 --string prefixed with -: directly before the specified recipe, at the start if not found.
