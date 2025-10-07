@@ -36,11 +36,9 @@ end
 local function AddLaserMillData(recipe, vanilla, dlc)
     if data.raw.recipe[recipe] then
         if vanilla then
-            log("adding!")
             data.raw.recipe[recipe].lasermill_vanilla = vanilla
         end
         if dlc then
-            log("adding!")
             data.raw.recipe[recipe].lasermill_dlc = dlc
         end
     end
