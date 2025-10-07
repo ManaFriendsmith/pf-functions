@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+  Info:
+    - Initial release.
+    - Broke out functions shared across BrassTacks etc. into their own mod, for ease of maintenance.
+    - Consolidated difficulty settings from BrassTacks etc. into a single option. Apologies for the loss of granularity.
+    - Rewrote functions for compatibility with factorio 2.0/SpaceAge and to make them generally more flexible.
