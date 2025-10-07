@@ -1,5 +1,5 @@
 local rm = {}
-local parts = require("parts")
+local misc = require("misc")
 
 local function FindIngredientInList(haystack, needle)
   for k, v in pairs(haystack) do
@@ -12,7 +12,7 @@ end
 
 local function StandardizeRecipe(recipe)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
   end
   if recipe then
     if not recipe.pf_standardized then
@@ -30,7 +30,7 @@ end
 
 local function GetIngredientCount(recipe, ingredient)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
   end
   rm.StandardizeRecipe(recipe)
   if not recipe then
@@ -50,7 +50,7 @@ end
 
 local function AddIngredient(recipe, ingredient, amount, catalyst)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
     if not recipe then
       return
     end
@@ -90,7 +90,7 @@ end
 
 local function RemoveIngredient(recipe, ingredient, amount, catalyst)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
     if not recipe then
       return
     end
@@ -131,7 +131,7 @@ end
 
 local function AddProduct(recipe, ingredient, amount)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
     if not recipe then
       return
     end
@@ -204,7 +204,7 @@ end
 
 local function RemoveProduct(recipe, ingredient, amount)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
     if not recipe then
       return
     end
@@ -213,7 +213,7 @@ local function RemoveProduct(recipe, ingredient, amount)
 
   if type(ingredient) == "string" then
     ingredient = {
-      type = parts.get_prototype(ingredient, "fluid") and "fluid" or "item",
+      type = misc.GetPrototype(ingredient, "fluid") and "fluid" or "item",
       name = ingredient,
       amount_min = amount or 1,
       amount_max = amount or 1,
@@ -234,7 +234,7 @@ local function RemoveProduct(recipe, ingredient, amount)
 
   for k, v in pairs(recipe.results) do
     if v.type == ingredient.type and v.name == ingredient.name and (v.probability or 1) == ingredient.probability then
-      if v.type == "item" or v.temperature == ingredient.temperature or (ingredient.temperature == nil and v.temperature == parts.get_prototype(v.name, "fluid").default_temperature) then
+      if v.type == "item" or v.temperature == ingredient.temperature or (ingredient.temperature == nil and v.temperature == misc.GetPrototype(v.name, "fluid").default_temperature) then
         --merge amounts
         if v.amount then
           if ingredient.amount_min == ingredient.amount_max then
@@ -267,7 +267,7 @@ end
 
 local function MultiplyRecipe(recipe, factor)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
     if not recipe then
       return
     end
@@ -312,7 +312,7 @@ end
 
 local function ReplaceIngredientProportional(recipe, find, replace, factor, max)
   if type(recipe) == "string" then
-    recipe = parts.get_prototype(recipe, "recipe")
+    recipe = misc.GetPrototype(recipe, "recipe")
     if not recipe then
       return
     end

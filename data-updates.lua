@@ -9,7 +9,7 @@ end
 
 local function best_item(items)
     for k, v in pairs(items) do
-        if misc.get_prototype(v[1]) then
+        if misc.GetPrototype(v[1]) then
             return v
         end
     end
