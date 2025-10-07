@@ -33,17 +33,6 @@ local function GetPrototype(name, type)
   return nil
 end
 
-local function AddLaserMillData(recipe, vanilla, dlc)
-    if data.raw.recipe[recipe] then
-        if vanilla then
-            data.raw.recipe[recipe].lasermill_vanilla = vanilla
-        end
-        if dlc then
-            data.raw.recipe[recipe].lasermill_dlc = dlc
-        end
-    end
-end
-
 misc_funcs.difficulty = get_difficulty()
 misc_funcs.GetSetting = GetSetting
 misc_funcs.GetPrototype = GetPrototype

@@ -390,6 +390,17 @@ local function RemoveRecipeCategory(recipe, category)
   end
 end
 
+local function AddLaserMillData(recipe, vanilla, dlc)
+    if data.raw.recipe[recipe] then
+        if vanilla then
+            data.raw.recipe[recipe].lasermill_vanilla = vanilla
+        end
+        if dlc then
+            data.raw.recipe[recipe].lasermill_dlc = dlc
+        end
+    end
+end
+
 
 rm.FindIngredientInList = FindIngredientInList
 rm.StandardizeRecipe = StandardizeRecipe
@@ -402,5 +413,6 @@ rm.ReplaceIngredientProportional = ReplaceIngredientProportional
 rm.MultiplyRecipe = MultiplyRecipe
 rm.AddRecipeCategory = AddRecipeCategory
 rm.RemoveRecipeCategory = RemoveRecipeCategory
+rm.AddLaserMillData = AddLaserMillData
 
 return rm
