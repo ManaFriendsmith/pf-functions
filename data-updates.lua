@@ -1,4 +1,4 @@
-local parts = require("parts")
+local misc = require("misc")
 local rm = require("recipe-manipulation")
 local tm = require("technology-manipulation")
 
@@ -9,7 +9,7 @@ end
 
 local function best_item(items)
     for k, v in pairs(items) do
-        if parts.get_prototype(v[1]) then
+        if misc.get_prototype(v[1]) then
             return v
         end
     end
