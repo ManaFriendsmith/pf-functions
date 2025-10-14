@@ -315,6 +315,14 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     --MUST BE FIRST TO TAKE PRECEDENCE OVER SELF RECYCLING RECIPES!!!
     move_subgroup("alloy-separation", "resource-processing", "")
 
+    if data.raw["item-subgroup"]["alloy-separation"] then
+        move("brass-separation", "alloy-separation", "za")
+        move("invar-separation", "alloy-separation", "zb")
+    else
+        move("brass-separation", "alloy", "za")
+        move("invar-separation", "alloy", "zb")
+    end
+
     if mods["space-age"] then
         move_subgroup("aquilo-processes", "resource-processing", "sa-d")
 
