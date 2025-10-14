@@ -389,6 +389,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("holmium-ore", "holmium", "ab")
         move("weird-alien-gizmo-recycling", "holmium", "b")
         move("holmium-solution", "holmium", "c")
+        move("spectroscopic-holmium-processing", "holmium", "ca")
         move("holmium-plate", "holmium", "d")
         move("electrolyte", "holmium", "e")
         move("activated-carbon", "holmium", "f")
@@ -415,6 +416,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("aop-biomass", "organic-raw-materials", "m")
 
         move("bioflux", "biochemistry", "a")
+        move("spectroscopic-bioflux-processing", "biochemistry", "aa")
         move("nutrients-from-bioflux", "biochemistry", "b")
         move("burnt-spoilage", "biochemistry", "c")
         move("biosulfur", "biochemistry", "d")
