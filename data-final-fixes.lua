@@ -86,7 +86,9 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
 
     move("iron-plate", "metal-plate", "a")
     move("copper-plate", "metal-plate", "b")
-    move("zinc-plate", "metal-plate", "c")
+    if mods["BrassTacks"] then -- no paracelsin
+        move("zinc-plate", "metal-plate", "c")
+    end
     move("nickel-plate", "metal-plate", "d")
     move("lead-plate", "metal-plate", "e")
     move("tin-plate", "metal-plate", "f")
@@ -206,7 +208,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("electric-engine-unit", "engine-components", "h")
     end
 
-    if count_items({"malleable-logarithmic-casing", "hardened-hull", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure"}) >= 2 then
+    if count_items({"malleable-logarithmic-casing", "hardened-hull", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets"}) >= 2 then
         move("iron-stick", "structural-components", "a")
         move("lead-expansion-bolt", "structural-components", "b")
         move("malleable-logarithmic-casing", "structural-components", "c")
@@ -217,6 +219,9 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
             --pf-sa-compat makes a separate row for rocket components
             move("low-density-structure", "structural-components", "g")
         end
+        move("zinc-rivets", "structural-components", "h")
+    else
+        move("zinc-rivets", "intermediate-product", "d[mod-intermediate]-sa-a-a")
     end
 
     if count_items({"copper-cable", "neural-conductor", "tinned-cable", "optical-fiber", "gold-wire", "heavy-cable", "superconductor"}) >= 3 then
@@ -228,18 +233,23 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("heavy-cable", "cable", "f")
         move("superconductor", "cable", "g")
 
-        if count_items({"battery", "solder", "electromagnetic-coil", "silicon-wafer", "supercapacitor"}) >= 3 then
+        if count_items({"battery", "solder", "electromagnetic-coil", "silicon-wafer", "supercapacitor", "zinc-solder", "electric-coil"}) >= 3 then
             move("battery", "electronic-gubbins", "b-a")
             move("solder", "electronic-gubbins", "b-b")
             move("electromagnetic-coil", "electronic-gubbins", "b-c")                
             move("silicon-wafer", "electronic-gubbins", "b-d")                
             move("supercapacitor", "electronic-gubbins", "b-e")                
+            move("zinc-solder", "electronic-gubbins", "b-f")                
+            move("electric-coil", "electronic-gubbins", "b-g")                
         else
             move("battery", "circuits", "a-a")
+            move("batteries-from-nitric-acid", "circuits", "a-aa")
             move("solder", "circuits", "a-b")
             move("electromagnetic-coil", "circuits", "a-c")    
             move("silicon-wafer", "circuits", "a-d")    
             move("supercapacitor", "circuits", "a-e")    
+            move("zinc-solder", "circuits", "a-f")    
+            move("electric-coil", "circuits", "a-g")    
         end
     else
         move("copper-cable", "electronic-gubbins", "a-a")
@@ -249,18 +259,23 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("gold-wire", "electronic-gubbins", "a-e")
         move("heavy-cable", "electronic-gubbins", "a-f")
         move("superconductor", "electronic-gubbins", "a-g")
+        move("zinc-solder", "electronic-gubbins", "a-h")
 
         move("battery", "electronic-gubbins", "b-a")
+        move("batteries-from-nitric-acid", "electronic-gubbins", "b-aa")
         move("solder", "electronic-gubbins", "b-b")
         move("electromagnetic-coil", "electronic-gubbins", "b-c")
         move("silicon-wafer", "electronic-gubbins", "b-d")
         move("supercapacitor", "electronic-gubbins", "b-e")
+        move("electric-coil", "electronic-gubbins", "b-f")
     end
 
     move("integrated-circuit", "circuits", "b-a")
+    move("integrated-circuits-from-nitric-acid", "circuits", "b-aa")
     move("electronic-circuit", "circuits", "b-b")
     move("advanced-circuit", "circuits", "b-c")
     move("processing-unit", "circuits", "b-d")
+    move("paracelsin-processing-units-from-nitric-acid", "circuits", "b-da")
     move("quantum-processor", "circuits", "b-e")
 
     if count_items({"barrel", "pipe-flange", "airtight-seal", "high-pressure-valve", "fluid-regulator", "self-regulating-valve", "non-reversible-tremie-pipe", "hydrocoptic-marzelvane"}) >= 3 then
@@ -324,7 +339,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     end
 
     if mods["space-age"] then
-        move_subgroup("aquilo-processes", "resource-processing", "sa-d")
+        move_subgroup("aquilo-processes", "resource-processing", "sa-g")
 
         move_item("carbon", "solid-chemicals", "a")
         move_item("ice", "solid-chemicals", "b")
@@ -448,5 +463,10 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
 
         move("biter-egg", "nauvis-agriculture", "b[nauvis-agriculture]-ca")
         move_subgroup("nauvis-agriculture", "resource-processing", "sa-c-e")
+
+        move_subgroup("paracelsin-processes", "resource-processing", "sa-e-aa")
+        move_subgroup("nitric-acid-and-nitrogen", "resource-processing", "sa-e-ab")
+        move("nitrogen-nitric-acid", "nitric-acid-and-nitrogen", "a")
+        move_subgroup("zinc-fluids", "resource-processing", "sa-e-ac")
     end
 end
