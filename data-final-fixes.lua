@@ -433,6 +433,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("bioflux", "biochemistry", "a")
         move("spectroscopic-bioflux-processing", "biochemistry", "aa")
         move("nutrients-from-bioflux", "biochemistry", "b")
+        move("toxic-environment-nutrients-bootstrap", "biochemistry", "b")
         move("burnt-spoilage", "biochemistry", "c")
         move("biosulfur", "biochemistry", "d")
         move("bioplastic", "biochemistry", "e")
