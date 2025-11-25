@@ -33,9 +33,18 @@ local function GetPrototype(name, type)
   return nil
 end
 
+local function VariableGraphicsPath(prefix, postfix)
+  if settings.startup["planetfall-graphics-mode"].value == "Vector" then
+    return prefix .. "/vector/" .. postfix
+  else
+    return prefix .. "/render/" .. postfix
+  end
+end
+
 misc_funcs.difficulty = get_difficulty()
 misc_funcs.GetSetting = GetSetting
 misc_funcs.GetPrototype = GetPrototype
+misc_funcs.VariableGraphicsPath = VariableGraphicsPath
 misc_funcs.AddLaserMillData = AddLaserMillData
 
 if mods["any-planet-start"] then
