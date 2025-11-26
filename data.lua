@@ -203,4 +203,27 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
             }
         })
     end
+
+    if mods["castra"] then
+        data:extend({
+            {
+                type = "item-subgroup",
+                group = "resource-processing",
+                name = "castra-metallurgy",
+                order = "sa-d-a1"
+            },
+            {
+                type = "item-subgroup",
+                group = "resource-processing",
+                name = "castra-chemistry",
+                order = "sa-d-a2"
+            },
+            {
+                type = "item-subgroup",
+                group = "intermediate-products",
+                name = "castra-electronic",
+                order = "g-f2"
+            }
+        })
+    end
 end

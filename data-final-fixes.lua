@@ -1,3 +1,5 @@
+local misc = require("misc")
+
 if settings.startup["planetfall-reorganize-crafting-menu"].value then
     local function count_items(list)
         local count = 0
@@ -184,17 +186,20 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("solid-fuel-disposal", "waste-processing", "h")
         move("sulfur-disposal", "waste-processing", "i")
         move("toluene-disposal", "waste-processing", "j")
+        move("gunpowder-disposal", "waste-processing", "k")
     end
 
     move("iron-gear-wheel", "rotary-components", "a")
     move("brass-balls", "rotary-components", "b")
     move("bearing", "rotary-components", "c")
     move("flywheel", "rotary-components", "d")
+    move("flywheel-nickel", "rotary-components", "d2")
     move("spurving-bearing", "rotary-components", "e")
     move("cooling-fan", "rotary-components", "f")
     move("fast-gearbox", "rotary-components", "g")
     move("express-gearbox", "rotary-components", "h")
     move("engine-unit", "rotary-components", "i")
+    move("engine-unit-gunpowder", "rotary-components", "i2")
     move("electric-engine-unit", "rotary-components", "j")
 
     if count_items({"electric-motor", "drive-belt", "stepper-motor", "spark-plug"}) > 0 then
@@ -204,17 +209,20 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("spark-plug", "engine-components", "d")
         move("drive-belt", "engine-components", "e")
         move("ambifacient-lunar-waneshaft", "engine-components", "f")
+        move("ambifacient-lunar-waneshaft-gunpowder", "engine-components", "f2")
         move("engine-unit", "engine-components", "g")
+        move("engine-unit-gunpowder", "engine-components", "g2")
         move("electric-engine-unit", "engine-components", "h")
     end
 
-    if count_items({"malleable-logarithmic-casing", "hardened-hull", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets"}) >= 2 then
+    if count_items({"malleable-logarithmic-casing", "hardened-hull", "hardened-hull-nickel", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets"}) >= 2 then
         move("iron-stick", "structural-components", "a")
         move("lead-expansion-bolt", "structural-components", "b")
         move("malleable-logarithmic-casing", "structural-components", "c")
         move("loadbearing-lattice", "structural-components", "d")
         move("crucible", "structural-components", "e")
         move("hardened-hull", "structural-components", "f")
+        move("hardened-hull-nickel", "structural-components", "f2")
         if not mods["space-age"] then
             --pf-sa-compat makes a separate row for rocket components
             move("low-density-structure", "structural-components", "g")
@@ -469,5 +477,40 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move_subgroup("nitric-acid-and-nitrogen", "resource-processing", "sa-e-ab")
         move("nitrogen-nitric-acid", "nitric-acid-and-nitrogen", "a")
         move_subgroup("zinc-fluids", "resource-processing", "sa-e-ac")
+
+        move("integrated-circuit-battlefield-data", "castra-electronic", "a")
+        move("electronic-circuit-battlefield-data", "castra-electronic", "b")
+        move("advanced-circuit-battlefield-data", "castra-electronic", "c")
+        move("processing-unit-battlefield-data", "castra-electronic", "d")
+        move("battery-nickel", "castra-electronic", "e")
+        move("lithium-battery", "castra-electronic", "f")
+        move("castra-data", "castra-electronic", "g")
+        move("jammer-interference", "castra-electronic", "h")
+
+        move("millerite", "castra-metallurgy", "a")
+        move(mods["IfNickel"] and "cst-nickel-plate" or "nickel-plate", "castra-metallurgy", "b")
+        move("nickel-extraction", "castra-metallurgy", "c")
+        move("nickel-sulfide-reduction", "castra-metallurgy", "d")
+        move("advanced-nickel-processing", "castra-metallurgy", "e")
+        if misc.difficulty == 1 then
+            move("blast-galvanized-steel-plate", "castra-metallurgy", "f")
+        end
+        move("ancient-military-wreckage", "castra-metallurgy", "g")
+        move("bullet-casing-sorting", "castra-metallurgy", "h")
+        move("custom-ancient-military-wreckage-recycling", "castra-metallurgy", "i")
+
+        if not (misc.difficulty > 1 and mods["BrimStuff"]) then
+            move("gunpowder", "castra-chemistry", "a")
+        end
+        move("explosives-gunpowder", "castra-chemistry", "b")
+        move("gunpowder-carbon", "castra-chemistry", "c")
+        move("rubber-gunpowder", "castra-chemistry", "d")
+        move("hydrogen-sulfide-electrolysis", "castra-chemistry", "e")
+        move("spectroscopic-hydrogen-sulfide-electrolysis", "castra-chemistry", "e2")
+        move("hydrogen-sulfide-carbon-extraction", "castra-chemistry", "f")
+        move("plastic-hydrogen-sulfide", "castra-chemistry", "g")
+        move("rocket-fuel-sulfur", "rocket-components", "c2a")
+        move("reverse-cracking", "oil-fractions", "f2")
+        move("holmium-catalyzing", "holmium", "e")
     end
 end
