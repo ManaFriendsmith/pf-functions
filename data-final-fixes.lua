@@ -220,6 +220,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("lead-expansion-bolt", "structural-components", "b")
         if misc.difficulty < 3 and mods["BrassTacks"] then
             move("galvanized-steel-plate", "structural-components", "b2")
+            move("blast-galvanized-steel-plate", "structural-components", "b3")
         end
         move("malleable-logarithmic-casing", "structural-components", "c")
         move("loadbearing-lattice", "structural-components", "d")
