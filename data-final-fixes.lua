@@ -202,7 +202,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("engine-unit-gunpowder", "rotary-components", "i2")
     move("electric-engine-unit", "rotary-components", "j")
 
-    if count_items({"electric-motor", "drive-belt", "stepper-motor", "spark-plug"}) > 0 then
+    if count_items({"electric-motor", "drive-belt", "stepper-motor", "spark-plug", "engine-unit-gunpowder"}) > 0 then
         move("electric-motor", "engine-components", "a")
         move("semiboloid-stator", "engine-components", "b")
         move("stepper-motor", "engine-components", "c")
@@ -215,9 +215,12 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("electric-engine-unit", "engine-components", "h")
     end
 
-    if count_items({"malleable-logarithmic-casing", "hardened-hull", "hardened-hull-nickel", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets"}) >= 2 then
+    if count_items({"malleable-logarithmic-casing", "hardened-hull", "hardened-hull-nickel", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets", (misc.difficulty < 3 and mods["BrassTacks"]) and "galvanized-steel-plate" or "no-item-at-all"}) >= 2 then
         move("iron-stick", "structural-components", "a")
         move("lead-expansion-bolt", "structural-components", "b")
+        if misc.difficulty < 3 and mods["BrassTacks"] then
+            move("galvanized-steel-plate", "structural-components", "b2")
+        end
         move("malleable-logarithmic-casing", "structural-components", "c")
         move("loadbearing-lattice", "structural-components", "d")
         move("crucible", "structural-components", "e")
@@ -504,7 +507,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         end
         move("explosives-gunpowder", "castra-chemistry", "b")
         move("gunpowder-carbon", "castra-chemistry", "c")
-        move("rubber-gunpowder", "castra-chemistry", "d")
+        move("rubber-gunpowder", "solid-chemicals", "h1")
         move("hydrogen-sulfide-electrolysis", "castra-chemistry", "e")
         move("spectroscopic-hydrogen-sulfide-electrolysis", "castra-chemistry", "e2")
         move("hydrogen-sulfide-carbon-extraction", "castra-chemistry", "f")
