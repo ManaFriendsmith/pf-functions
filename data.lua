@@ -226,4 +226,22 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
             }
         })
     end
+
+    if mods["LunarLandings"] then
+        data:extend({
+            {
+                type = "item-subgroup",
+                group = "resource-processing",
+                name = "luna-resources",
+                order = "sa-0"
+            },
+            {
+                type = "item-subgroup",
+                name = "rocket-components",
+                group = "intermediate-products",
+                order = "h2"
+            }
+
+        })
+    end
 end

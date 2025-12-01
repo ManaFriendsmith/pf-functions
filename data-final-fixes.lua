@@ -134,8 +134,12 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("plastic-bar", "solid-chemicals", "l")
 
     move("ice-melting", "fluid-chemicals", "a")
+    move("ll-melt-ice", "fluid-chemicals", "a")
     move("acid-neutralisation", "fluid-chemicals", "b")
     move("steam-condensation", "fluid-chemicals", "c")
+    move("ll-condense-steam", "fluid-chemicals", "c")
+    move("ll-boil-water", "fluid-chemicals", "c")
+    move("ll-rocket-fuel", "fluid-chemicals", "c4")
     move("organotins", "fluid-chemicals", "d")
     move("simple-nitric-acid", "fluid-chemicals", "e")
     move("nitric-acid", "fluid-chemicals", "f")
@@ -144,9 +148,14 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
 
     move("chemical-waste-incineration", "fluid-chemicals", "i")
     move("chemical-waste-reprocessing", "fluid-chemicals", "j")
+    move("astral-waste-treatment", "fluid-chemicals", "ja")
     move("chemical-waste-leaching", "fluid-chemicals", "k")
     move("depleted-acid-reprocessing", "fluid-chemicals", "l")
+    move("astral-acid-recovery", "fluid-chemicals", "la")
     move("depleted-acid-reprocessing-with-calcite", "fluid-chemicals", "m")
+    if mods["LunarLandings"] then
+        move("rocket-fuel", "fluid-chemicals", "n")
+    end
 
     move("stone", "stone", "a")
     move("sort-stone-zircon", "stone", "ba")
@@ -169,6 +178,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("coal-liquefaction", "oil-fractions", "d")
     move("heavy-oil-cracking", "oil-fractions", "e")
     move("light-oil-cracking", "oil-fractions", "f")
+    move("maraxsis-petroleum-gas-cracking", "oil-fractions", "f2")
     move("solid-fuel-from-heavy-oil", "oil-fractions", "g")
     move("solid-fuel-from-light-oil", "oil-fractions", "h")
     move("solid-fuel-from-petroleum-gas", "oil-fractions", "i")
@@ -177,8 +187,10 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     if mods["BrimStuff"] then
         move("chemical-waste-incineration", "waste-processing", "a")
         move("chemical-waste-reprocessing", "waste-processing", "b")
+        move("astral-waste-treatment", "waste-processing", "ba")
         move("chemical-waste-leaching", "waste-processing", "c")
         move("depleted-acid-reprocessing", "waste-processing", "d")
+        move("astral-acid-recovery", "waste-processing", "da")
         move("depleted-acid-reprocessing-with-calcite", "waste-processing", "e")
         move("coal-disposal", "waste-processing", "f")
         move("carbon-black-disposal", "waste-processing", "f")
@@ -288,9 +300,10 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("advanced-circuit", "circuits", "b-c")
     move("processing-unit", "circuits", "b-d")
     move("paracelsin-processing-units-from-nitric-acid", "circuits", "b-da")
-    move("quantum-processor", "circuits", "b-e")
+    move("ll-quantum-processor", "circuits", "b-e")
+    move("quantum-processor", "circuits", "b-f")
 
-    if count_items({"barrel", "pipe-flange", "airtight-seal", "high-pressure-valve", "fluid-regulator", "self-regulating-valve", "non-reversible-tremie-pipe", "hydrocoptic-marzelvane"}) >= 3 then
+    if count_items({"barrel", "pipe-flange", "airtight-seal", "high-pressure-valve", "fluid-regulator", "self-regulating-valve", "non-reversible-tremie-pipe", "hydrocoptic-marzelvane", "maraxsis-empty-research-vessel"}) >= 3 then
         move("barrel", "plumbing-components", "a")
         move("pipe-flange", "plumbing-components", "b")
         move("airtight-seal", "plumbing-components", "c")
@@ -298,7 +311,8 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("fluid-regulator", "plumbing-components", "e")
         move("self-regulating-valve", "plumbing-components", "f")
         move("non-reversible-tremie-pipe", "plumbing-components", "g")
-        move("hydrocoptic-marzelvane", "plumbing-components", "h")
+        move("maraxsis-empty-research-vessel", "plumbing-components", "h")
+        move("hydrocoptic-marzelvane", "plumbing-components", "i")
     end
 
     if count_items({"spring", "linkages", "motorized-arm", "complex-joint", "grabber", "differential-girdlespring", data.raw.item["iron-stick"].subgroup == "intermediate-product" and "iron-stick" or "no-item-at-all", mods["space-age"] and "no-item-at-all" or "gimbaled-rocket-engine"}) >= 3 then
@@ -385,6 +399,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("molten-lead", "foundry-melting", "e")
         move("molten-tin", "foundry-melting", "f")
         move("molten-gold", "foundry-melting", "g")
+        move("molten-salt", "foundry-melting", "h")
 
         move("casting-iron", "foundry-casting-plates", "a")
         move("casting-steel", "foundry-casting-plates", "aa")
@@ -482,6 +497,12 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("nitrogen-nitric-acid", "nitric-acid-and-nitrogen", "a")
         move_subgroup("zinc-fluids", "resource-processing", "sa-e-ac")
 
+        if mods["maraxsis"] then
+            move_subgroup("maraxsis-intermediants", "resource-processing", "sa-e-ad")
+            move_subgroup("salt", "resource-processing", "sa-e-ada")
+            
+        end
+
         move("integrated-circuit-battlefield-data", "castra-electronic", "a")
         move("electronic-circuit-battlefield-data", "castra-electronic", "b")
         move("advanced-circuit-battlefield-data", "castra-electronic", "c")
@@ -513,8 +534,50 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("spectroscopic-hydrogen-sulfide-electrolysis", "castra-chemistry", "e2")
         move("hydrogen-sulfide-carbon-extraction", "castra-chemistry", "f")
         move("plastic-hydrogen-sulfide", "castra-chemistry", "g")
-        move("rocket-fuel-sulfur", "rocket-components", "c2a")
         move("reverse-cracking", "oil-fractions", "f2")
         move("holmium-catalyzing", "holmium", "e")
+    end
+
+    if mods["LunarLandings"] then
+        move_subgroup("ll-raw-material-moon", "resource-processing", "sa-01")
+        move("ll-ice", "luna-resources", "a")
+        move("ll-moon-rock", "luna-resources", "b")
+        move("ll-rich-moon-rock", "luna-resources", "c")
+        move("ll-aluminium-ore", "luna-resources", "d")
+        move("cheese-ore", "luna-resources", "e")
+        move("ll-astrocrystals", "luna-resources", "f")
+
+        move_subgroup("ll-data-cards", "intermediate-products", "h4")
+        move_subgroup("ll-polaritons", "intermediate-products", "h5")
+    end
+
+    if mods["space-age"] or mods["LunarLandings"] then
+        move("low-density-structure", "rocket-components", "a")
+        move("ll-low-density-structure-aluminium", "rocket-components", "a2")
+        move("casting-low-density-structure", "rocket-components", "a3")
+
+        move("ll-rocket-control-unit", "rocket-components", "b")
+        move("rocket-control-unit-tracker", "rocket-components", mods["space-age"] and "b2" or "c2")
+
+        move("rocket-control-unit", "rocket-components", "c")
+
+        move("gimbaled-rocket-engine", "rocket-components", "d")
+
+        move("rocket-fuel", "rocket-components", "e")
+        move("rocket-fuel-from-jelly", "rocket-components", "e2")
+        move("ammonia-rocket-fuel", "rocket-components", "e3")
+        move("maraxsis-hydrolox-rocket-fuel", "rocket-components", "e4")
+        move("rocket-fuel-sulfur", "rocket-components", "e4")
+
+        move("ll-heat-shielding", "rocket-components", "f")
+
+        move("ll-rocket-part-nauvis", "rocket-components", "g")
+        move("ll-rocket-part-luna", "rocket-components", "g2")
+        move("ll-rocket-part-interstellar", "rocket-components", "g3")
+        move("rocket-part", "rocket-components", "g4")
+        move("ll-used-rocket-part-recycling", "rocket-components", "z")
+
+        move_subgroup("ll-packed-rocket-ingredients", "intermediate-products", "h3")
+
     end
 end
