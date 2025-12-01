@@ -88,7 +88,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
 
     move("iron-plate", "metal-plate", "a")
     move("copper-plate", "metal-plate", "b")
-    if mods["BrassTacks"] then -- no paracelsin
+    if mods["BrassTacksMk2"] then -- no paracelsin
         move("zinc-plate", "metal-plate", "c")
     end
     move("nickel-plate", "metal-plate", "d")
@@ -184,7 +184,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("solid-fuel-from-petroleum-gas", "oil-fractions", "i")
     move("solid-fuel", "oil-fractions", "j")
 
-    if mods["BrimStuff"] then
+    if mods["BrimStuffMk2"] then
         move("chemical-waste-incineration", "waste-processing", "a")
         move("chemical-waste-reprocessing", "waste-processing", "b")
         move("astral-waste-treatment", "waste-processing", "ba")
@@ -227,10 +227,10 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("electric-engine-unit", "engine-components", "h")
     end
 
-    if count_items({"malleable-logarithmic-casing", "hardened-hull", "hardened-hull-nickel", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets", (misc.difficulty < 3 and mods["BrassTacks"]) and "galvanized-steel-plate" or "no-item-at-all"}) >= 2 then
+    if count_items({"malleable-logarithmic-casing", "hardened-hull", "hardened-hull-nickel", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets", (misc.difficulty < 3 and mods["BrassTacksMk2"]) and "galvanized-steel-plate" or "no-item-at-all"}) >= 2 then
         move("iron-stick", "structural-components", "a")
         move("lead-expansion-bolt", "structural-components", "b")
-        if misc.difficulty < 3 and mods["BrassTacks"] then
+        if misc.difficulty < 3 and mods["BrassTacksMk2"] then
             move("galvanized-steel-plate", "structural-components", "b2")
             move("blast-galvanized-steel-plate", "structural-components", "b3")
         end
@@ -513,7 +513,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("jammer-interference", "castra-electronic", "h")
 
         move("millerite", "castra-metallurgy", "a")
-        move(mods["IfNickel"] and "cst-nickel-plate" or "nickel-plate", "castra-metallurgy", "b")
+        move(mods["IfNickelMk2"] and "cst-nickel-plate" or "nickel-plate", "castra-metallurgy", "b")
         move("nickel-extraction", "castra-metallurgy", "c")
         move("nickel-sulfide-reduction", "castra-metallurgy", "d")
         move("advanced-nickel-processing", "castra-metallurgy", "e")
@@ -524,7 +524,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("bullet-casing-sorting", "castra-metallurgy", "h")
         move("custom-ancient-military-wreckage-recycling", "castra-metallurgy", "i")
 
-        if not (misc.difficulty > 1 and mods["BrimStuff"]) then
+        if not (misc.difficulty > 1 and mods["BrimStuffMk2"]) then
             move("gunpowder", "castra-chemistry", "a")
         end
         move("explosives-gunpowder", "castra-chemistry", "b")

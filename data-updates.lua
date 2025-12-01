@@ -2,7 +2,7 @@ local misc = require("misc")
 local rm = require("recipe-manipulation")
 local tm = require("technology-manipulation")
 
-if not (mods["BrassTacks"] or mods["IfNickel"] or mods["BrimStuff"] or mods["ThemTharHills"] or mods["LasingAround"]) then
+if not (mods["BrassTacksMk2"] or mods["IfNickelMk2"] or mods["BrimStuffMk2"] or mods["ThemTharHillsMk2"] or mods["LasingAroundMk2"]) then
     return
 end
 --This probably does not belong in a library mod but I dare you to find a better place for it.
@@ -17,7 +17,7 @@ end
 
 local speed_item = best_item({{"express-gearbox", 1}, {"bearing", 5}, {"semiboloid-stator", 5}, {"drive-belt", 5}, {"electric-engine-unit", 1}})
 local efficiency_item = best_item({{"heavy-cable", 1}, {"electromagnetic-coil", 5}, {"rubber", 10}, {"gold-plate", 5}, {data.raw.item["electroplating-machine"] and "tinned-cable" or "no-item-at-all", 10}, {"flywheel", 5}, {"battery", 5}})
-local quality_item = best_item({{"scanner", 2}, {"laser", 2}, {"self-regulating-valve", 2}, {"gyro", mods["BrassTacks"] and 2 or 20}, {"transciever", 2}, {"fluid-regulator", 2}, {"high-pressure-valve", 2}, {"airtight-seal", 5}})
+local quality_item = best_item({{"scanner", 2}, {"laser", 2}, {"self-regulating-valve", 2}, {"gyro", mods["BrassTacksMk2"] and 2 or 20}, {"transciever", 2}, {"fluid-regulator", 2}, {"high-pressure-valve", 2}, {"airtight-seal", 5}})
 local productivity_item = best_item({{"complex-joint", 2}, {data.raw.item["scanner"] and "laser" or "no-item-at-all", 2}, {"motorized-arm", 5}, {"stepper-motor", 5}, {"differential-girdlespring", 2}, {"electric-motor", 5}})
 
 if speed_item and efficiency_item and productivity_item and (quality_item or not mods["quality"]) then
