@@ -189,6 +189,12 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
                 group = "resource-processing",
                 name = "bacteria",
                 order = "sa-c-d"
+            },
+            {
+                type = "item-subgroup",
+                name = "rocket-components",
+                group = "intermediate-products",
+                order = "h2"
             }
         })
     end
@@ -241,7 +247,6 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
                 group = "intermediate-products",
                 order = "h2"
             }
-
         })
     end
 end
