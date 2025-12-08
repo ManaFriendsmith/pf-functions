@@ -41,6 +41,14 @@ local function VariableGraphicsPath(prefix, postfix)
   end
 end
 
+local pf_reverse_load_order = {"LasingAroundMk2", "BrimStuffMk2", "ThemTharHillsMk2", "IfNickelMk2", "BrassTacksMk2", "pf-sa-compat", "pf-functions"}
+for k, v in pairs(pf_reverse_load_order) do
+  if mods[v] then
+    misc_funcs.last_pf_mod = v
+    break
+  end
+end
+
 misc_funcs.difficulty = get_difficulty()
 misc_funcs.GetSetting = GetSetting
 misc_funcs.GetPrototype = GetPrototype

@@ -401,6 +401,16 @@ local function AddLaserMillData(recipe, vanilla, dlc)
     end
 end
 
+-- you're stacking welcome!
+local function FixStackingRecycling()
+  if mods["deadlock-beltboxes-loaders"] then
+    for k, v in pairs(data.raw.recipe) do
+      if v.category == "stacking" or v.category == "unstacking" then
+        v.auto_recycle = false
+      end
+    end
+  end
+end
 
 rm.FindIngredientInList = FindIngredientInList
 rm.StandardizeRecipe = StandardizeRecipe
@@ -414,5 +424,6 @@ rm.MultiplyRecipe = MultiplyRecipe
 rm.AddRecipeCategory = AddRecipeCategory
 rm.RemoveRecipeCategory = RemoveRecipeCategory
 rm.AddLaserMillData = AddLaserMillData
+rm.FixStackingRecycling = FixStackingRecycling
 
 return rm

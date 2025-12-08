@@ -1,4 +1,5 @@
 local misc = require("misc")
+local rm = require("recipe-manipulation")
 
 if settings.startup["planetfall-reorganize-crafting-menu"].value then
     local function count_items(list)
@@ -580,4 +581,9 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move_subgroup("ll-packed-rocket-ingredients", "intermediate-products", "h3")
 
     end
+end
+
+if mods["quality"] and misc.last_pf_mod == "pf-functions" then
+    rm.FixStackingRecycling()
+    require("__quality__/data-updates.lua")
 end
