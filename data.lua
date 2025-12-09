@@ -249,4 +249,27 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
             }
         })
     end
+
+    if mods["scrap-industry"] then
+        data:extend({
+            {
+                type = "item-subgroup",
+                group = "resource-processing",
+                name = "scrap-processing-basic",
+                order = "dc"
+            },
+            {
+                type = "item-subgroup",
+                group = "resource-processing",
+                name = "scrap-processing-advanced",
+                order = "dd"
+            },
+            {
+                type = "item-subgroup",
+                group = "resource-processing",
+                name = "scrap-processing-exotic",
+                order = "de"
+            }
+        })
+    end
 end

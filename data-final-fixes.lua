@@ -200,6 +200,8 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("sulfur-disposal", "waste-processing", "i")
         move("toluene-disposal", "waste-processing", "j")
         move("gunpowder-disposal", "waste-processing", "k")
+        move("rubber-bits-disposal", "waste-processing", "l")
+        move("plastic-bits-disposal", "waste-processing", "m")
     end
 
     move("iron-gear-wheel", "rotary-components", "a")
@@ -215,8 +217,9 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("engine-unit-gunpowder", "rotary-components", "i2")
     move("electric-engine-unit", "rotary-components", "j")
 
-    if count_items({"electric-motor", "drive-belt", "stepper-motor", "spark-plug", "engine-unit-gunpowder"}) > 0 then
+    if count_items({"electric-motor", "drive-belt", "stepper-motor", "spark-plug", "engine-unit-gunpowder", "engine-unit-from-scrap"}) > 0 then
         move("electric-motor", "engine-components", "a")
+        move("electric-motor-from-scrap", "engine-components", "aa")
         move("semiboloid-stator", "engine-components", "b")
         move("stepper-motor", "engine-components", "c")
         move("spark-plug", "engine-components", "d")
@@ -224,8 +227,10 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("ambifacient-lunar-waneshaft", "engine-components", "f")
         move("ambifacient-lunar-waneshaft-gunpowder", "engine-components", "f2")
         move("engine-unit", "engine-components", "g")
-        move("engine-unit-gunpowder", "engine-components", "g2")
+        move("engine-unit-gunpowder", "engine-components", "ga")
+        move("engine-unit-from-scrap", "engine-components", "gb")
         move("electric-engine-unit", "engine-components", "h")
+        move("electric-engine-unit-from-scrap", "engine-components", "ha")
     end
 
     if count_items({"malleable-logarithmic-casing", "hardened-hull", "hardened-hull-nickel", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets", (misc.difficulty < 3 and mods["BrassTacksMk2"]) and "galvanized-steel-plate" or "no-item-at-all"}) >= 2 then
@@ -298,8 +303,11 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("integrated-circuit", "circuits", "b-a")
     move("integrated-circuits-from-nitric-acid", "circuits", "b-aa")
     move("electronic-circuit", "circuits", "b-b")
+    move("electronic-circuit-from-scrap", "circuits", "b-ba")
     move("advanced-circuit", "circuits", "b-c")
+    move("advanced-circuit-from-scrap", "circuits", "b-ca")
     move("processing-unit", "circuits", "b-d")
+    move("processing-unit-from-scrap", "circuits", "b-da")
     move("paracelsin-processing-units-from-nitric-acid", "circuits", "b-da")
     move("ll-quantum-processor", "circuits", "b-e")
     move("quantum-processor", "circuits", "b-f")
@@ -392,6 +400,8 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("tungsten-carbide", "foundry-misc", "n")
         move("tungsten-plate", "foundry-misc", "o")
         move("zirconium-tungstate", "foundry-misc", "p")
+        move("titanium-ore-from-stone", "foundry-misc", "q")
+        move("titanium-sublimation", "foundry-misc", "r")
 
         move("molten-iron", "foundry-melting", "a")
         move("molten-copper", "foundry-melting", "b")
@@ -581,9 +591,49 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move_subgroup("ll-packed-rocket-ingredients", "intermediate-products", "h3")
 
     end
-end
 
-if mods["quality"] and misc.last_pf_mod == "pf-functions" then
-    rm.FixStackingRecycling()
-    require("__quality__/data-updates.lua")
+    if mods["scrap-industry"] then
+        move_subgroup("production-scrap", "resource-processing", "db")
+
+        move("iron-plate-from-scrap", "scrap-processing-basic", "a")
+        move("copper-plate-from-scrap", "scrap-processing-basic", "b")
+        move("steel-plate-from-scrap", "scrap-processing-basic", "c")
+        move("lead-plate-from-scrap", "scrap-processing-basic", "d")
+        move("zinc-plate-from-scrap", "scrap-processing-basic", "da")
+        move("brass-plate-from-scrap", "scrap-processing-basic", "db")
+        move("titanium-plate-from-scrap", "scrap-processing-basic", "e")
+        move("nickel-plate-from-scrap", "scrap-processing-basic", "ea")
+        move("invar-plate-from-scrap", "scrap-processing-basic", "eb")
+        move("nitinol-plate-from-scrap", "scrap-processing-basic", "ec")
+        move("gold-plate-from-scrap", "scrap-processing-basic", "f")
+
+        move("molten-iron-from-scrap", "scrap-processing-advanced", "a")
+        move("molten-copper-from-scrap", "scrap-processing-advanced", "b")
+        move("molten-iron-from-steel-scrap", "scrap-processing-advanced", "c")
+        move("molten-lead-from-steel-scrap", "scrap-processing-advanced", "d")
+        move("molten-zinc-from-steel-scrap", "scrap-processing-advanced", "da")
+        move("brass-liquation", "scrap-processing-advanced", "db")
+        move("molten-nickel-from-steel-scrap", "scrap-processing-advanced", "ea")
+        move("invar-liquation", "scrap-processing-advanced", "eb")
+        move("nitinol-plate-from-scrap-in-space", "scrap-processing-advanced", "ec")
+        move("molten-gold-from-scrap", "scrap-processing-advanced", "f")
+    
+        move("mech-scrap", "scrap-processing-exotic", "a")
+        move("sort-mech-scrap", "scrap-processing-exotic", "aa")
+        move("circuit-scrap", "scrap-processing-exotic", "b")
+        move("motor-scrap", "scrap-processing-exotic", "c")
+        move("sort-motor-scrap", "scrap-processing-exotic", "ca")
+        move("plastic-bits", "scrap-processing-exotic", "d")
+        move("plastic-bar-from-bits", "scrap-processing-exotic", "da")
+        move("bioplastic-from-bits", "scrap-processing-exotic", "db")
+        move("rubber-bits", "scrap-processing-exotic", "e")
+        move("rubber-from-bits", "scrap-processing-exotic", "ea")
+        move("tungsten-scrap", "scrap-processing-exotic", "f")
+        move("tungsten-carbide-from-scrap", "scrap-processing-exotic", "fa")
+        move("tungsten-plate-from-scrap", "scrap-processing-exotic", "fb")
+        move("holmium-scrap", "scrap-processing-exotic", "g")
+        move("holmium-solution-from-scrap", "scrap-processing-exotic", "ga")
+        move("lithium-dust", "scrap-processing-exotic", "h")
+        move("lithium-plate-from-powder", "scrap-processing-exotic", "ha")
+    end
 end

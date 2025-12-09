@@ -35,3 +35,8 @@ if speed_item and efficiency_item and productivity_item and (quality_item or not
         end
     end
 end
+
+if mods["quality"] and misc.last_pf_mod == "pf-functions" then
+    rm.FixStackingRecycling()
+    require("__quality__/data-updates.lua")
+end
