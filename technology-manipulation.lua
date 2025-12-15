@@ -169,6 +169,24 @@ local function AddSciencePack(tech, pack)
     end
 end
 
+local function AddSciencePacks(tech, packs)
+    if type(tech) == "string" then
+        if data.raw.technology[tech] then
+            tech = data.raw.technology[tech]
+        else
+            return
+        end
+    end
+
+    if type(packs) == "string" then
+        packs = {packs}
+    end
+
+    for k, v in pairs(packs) do
+        AddSciencePack(tech, v)
+    end
+end
+
 local function RemoveSciencePack(tech, pack)
     if type(tech) == "string" then
         if data.raw.technology[tech] then
@@ -240,8 +258,35 @@ tm.RemovePrerequisite = RemovePrerequisite
 tm.AddUnlock = AddUnlock
 tm.RemoveUnlock = RemoveUnlock
 tm.AddSciencePack = AddSciencePack
+tm.AddSciencePacks = AddSciencePacks
 tm.RemoveSciencePack = RemoveSciencePack
 tm.SetTechnologyTrigger = SetTechnologyTrigger
 tm.SetTechnologyCost = SetTechnologyCost
+
+tm.post_aquilo_sciences = {"cryogenic-science-pack", "metallurgic-science-pack", "electromagnetic-science-pack", "agricultural-science-pack"}
+tm.post_promethium_sciences = {"promethium-science-pack", "cryogenic-science-pack", "metallurgic-science-pack", "electromagnetic-science-pack", "agricultural-science-pack", "utility-science-pack", "production-science-pack", "military-science-pack", "space-science-pack"}
+
+if mods["Paracelsin"] then
+    table.insert(tm.post_promethium_sciences, "galvanization-science-pack")
+end
+
+if mods["castra"] then
+    table.insert(tm.post_promethium_sciences, "battlefield-science-pack")
+end
+
+if mods["LunarLandings"] then
+    table.insert(tm.post_aquilo_sciences, "ll-space-science-pack")
+    table.insert(tm.post_promethium_sciences, "ll-space-science-pack")
+    table.insert(tm.post_promethium_sciences, "ll-quantum-science-pack")
+end
+
+if mods["maraxsis"] then
+    table.insert(tm.post_promethium_sciences, "hydraulic-science-pack")
+end
+
+if mods["planet-muluna"] then
+    table.insert(tm.post_aquilo_sciences, "interstellar-science-pack")
+    table.insert(tm.post_promethium_sciences, "interstellar-science-pack")
+end
 
 return tm
