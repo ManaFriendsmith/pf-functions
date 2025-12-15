@@ -76,6 +76,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
             move_subgroup("brimstuff-botany", "resource-processing", "db")
         end
     end
+    move_subgroup("muluna-forestry", "resource-processing", "ra")
 
     move("iron-ore", "metal-ore", "a")
     move("copper-ore", "metal-ore", "b")
@@ -207,6 +208,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("iron-gear-wheel", "rotary-components", "a")
     move("brass-balls", "rotary-components", "b")
     move("bearing", "rotary-components", "c")
+    move("bearing-from-carbon", "rotary-components", "c")
     move("flywheel", "rotary-components", "d")
     move("flywheel-nickel", "rotary-components", "d2")
     move("spurving-bearing", "rotary-components", "e")
@@ -217,7 +219,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("engine-unit-gunpowder", "rotary-components", "i2")
     move("electric-engine-unit", "rotary-components", "j")
 
-    if count_items({"electric-motor", "drive-belt", "stepper-motor", "spark-plug", "engine-unit-gunpowder", "engine-unit-from-scrap"}) > 0 then
+    if count_items({"electric-motor", "drive-belt", "stepper-motor", "spark-plug", "engine-unit-gunpowder", "engine-unit-from-scrap", "electric-engine-unit-from-carbon"}) > 0 then
         move("electric-motor", "engine-components", "a")
         move("electric-motor-from-scrap", "engine-components", "aa")
         move("semiboloid-stator", "engine-components", "b")
@@ -231,6 +233,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("engine-unit-from-scrap", "engine-components", "gb")
         move("electric-engine-unit", "engine-components", "h")
         move("electric-engine-unit-from-scrap", "engine-components", "ha")
+        move("electric-engine-unit-from-carbon", "engine-components", "hb")
     end
 
     if count_items({"malleable-logarithmic-casing", "hardened-hull", "hardened-hull-nickel", "lead-expansion-bolt", "crucible", mods["space-age"] and "no-item-at-all" or "low-density-structure", "zinc-rivets", (misc.difficulty < 3 and mods["BrassTacksMk2"]) and "galvanized-steel-plate" or "no-item-at-all"}) >= 2 then
@@ -263,23 +266,26 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("heavy-cable", "cable", "f")
         move("superconductor", "cable", "g")
 
-        if count_items({"battery", "solder", "electromagnetic-coil", "silicon-wafer", "supercapacitor", "zinc-solder", "electric-coil"}) >= 3 then
+        if count_items({"battery", "solder", "electromagnetic-coil", "silicon-wafer", "supercapacitor", "zinc-solder", "electric-coil", "solar-cell"}) >= 3 then
             move("battery", "electronic-gubbins", "b-a")
-            move("solder", "electronic-gubbins", "b-b")
-            move("electromagnetic-coil", "electronic-gubbins", "b-c")                
-            move("silicon-wafer", "electronic-gubbins", "b-d")                
-            move("supercapacitor", "electronic-gubbins", "b-e")                
-            move("zinc-solder", "electronic-gubbins", "b-f")                
-            move("electric-coil", "electronic-gubbins", "b-g")                
+            move("batteries-from-nitric-acid", "circuits", "a-aa")
+            move("solar-cell", "electronic-gubbins", "b-b")
+            move("solder", "electronic-gubbins", "b-c")
+            move("electromagnetic-coil", "electronic-gubbins", "b-d")                
+            move("silicon-wafer", "electronic-gubbins", "b-e")                
+            move("supercapacitor", "electronic-gubbins", "b-f")                
+            move("zinc-solder", "electronic-gubbins", "b-g")                
+            move("electric-coil", "electronic-gubbins", "b-h")                
         else
             move("battery", "circuits", "a-a")
             move("batteries-from-nitric-acid", "circuits", "a-aa")
-            move("solder", "circuits", "a-b")
-            move("electromagnetic-coil", "circuits", "a-c")    
-            move("silicon-wafer", "circuits", "a-d")    
-            move("supercapacitor", "circuits", "a-e")    
-            move("zinc-solder", "circuits", "a-f")    
-            move("electric-coil", "circuits", "a-g")    
+            move("solar-cell", "circuits", "a-b")
+            move("solder", "circuits", "a-c")
+            move("electromagnetic-coil", "circuits", "a-d")    
+            move("silicon-wafer", "circuits", "a-e")    
+            move("supercapacitor", "circuits", "a-f")    
+            move("zinc-solder", "circuits", "a-g")    
+            move("electric-coil", "circuits", "a-h")    
         end
     else
         move("copper-cable", "electronic-gubbins", "a-a")
@@ -293,15 +299,17 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
 
         move("battery", "electronic-gubbins", "b-a")
         move("batteries-from-nitric-acid", "electronic-gubbins", "b-aa")
-        move("solder", "electronic-gubbins", "b-b")
-        move("electromagnetic-coil", "electronic-gubbins", "b-c")
-        move("silicon-wafer", "electronic-gubbins", "b-d")
-        move("supercapacitor", "electronic-gubbins", "b-e")
-        move("electric-coil", "electronic-gubbins", "b-f")
+        move("solar-cell", "electronic-gubbins", "b-c")
+        move("solder", "electronic-gubbins", "b-d")
+        move("electromagnetic-coil", "electronic-gubbins", "b-e")
+        move("silicon-wafer", "electronic-gubbins", "b-f")
+        move("supercapacitor", "electronic-gubbins", "b-g")
+        move("electric-coil", "electronic-gubbins", "b-h")
     end
 
     move("integrated-circuit", "circuits", "b-a")
-    move("integrated-circuits-from-nitric-acid", "circuits", "b-aa")
+    move("integrated-circuit-from-aluminum", "circuits", "b-aa")
+    move("integrated-circuits-from-nitric-acid", "circuits", "b-aaa")
     move("electronic-circuit", "circuits", "b-b")
     move("electronic-circuit-from-scrap", "circuits", "b-ba")
     move("advanced-circuit", "circuits", "b-c")
@@ -332,6 +340,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("spring", "articulated-components", "c")
         move("motorized-arm", "articulated-components", "d")
         move("complex-joint", "articulated-components", "e")
+        move("complex-joint-from-carbon", "articulated-components", "ea")
         move("grabber", "articulated-components", "f")
         move("differential-girdlespring", "articulated-components", "g")
         if not mods["space-age"] then
@@ -374,6 +383,9 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     end
 
     if mods["space-age"] then
+
+        move_subgroup("muluna-products", "resource-processing", "sa-0")
+
         move_subgroup("aquilo-processes", "resource-processing", "sa-g")
 
         move_item("carbon", "solid-chemicals", "a")
@@ -411,6 +423,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("molten-tin", "foundry-melting", "f")
         move("molten-gold", "foundry-melting", "g")
         move("molten-salt", "foundry-melting", "h")
+        move("molten-aluminum", "foundry-melting", "j")
 
         move("casting-iron", "foundry-casting-plates", "a")
         move("casting-steel", "foundry-casting-plates", "aa")
@@ -425,11 +438,13 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("zirconium-in-foundry", "foundry-casting-plates", "g")
         move("casting-gold", "foundry-casting-plates", "h")
         move("titanium-in-foundry", "foundry-casting-plates", "i")
+        move("aluminum-casting", "foundry-casting-plates", "j")
 
         move("casting-iron-gear-wheel", "foundry-casting-items", "a")
         move("casting-flywheel", "foundry-casting-items", "b")
         move("casting-iron-stick", "foundry-casting-items", "c")
         move("casting-copper-cable", "foundry-casting-items", "e")
+        move("casting-aluminum-cable", "foundry-casting-items", "ea")
         move("casting-gold-wire", "foundry-casting-items", "f")
         move("casting-solder", "foundry-casting-items", "g")
         move("casting-lead-expansion-bolt", "foundry-casting-items", "h")
@@ -476,7 +491,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("biosulfur", "biochemistry", "d")
         move("bioplastic", "biochemistry", "e")
         move("biolubricant", "biochemistry", "f")
-        move("silica-from-ash", "biochemistry", "g")
+        move("razorgrass-ash-washing", "biochemistry", "g")
         move("chelated-lead", "biochemistry", "g")
         move("lead-dechelation", "biochemistry", "g")
         move("jellyskin-processing", "biochemistry", "g")
@@ -566,6 +581,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("low-density-structure", "rocket-components", "a")
         move("ll-low-density-structure-aluminium", "rocket-components", "a2")
         move("casting-low-density-structure", "rocket-components", "a3")
+        move("casting-low-density-structure-aluminum", "rocket-components", "a4")
 
         move("ll-rocket-control-unit", "rocket-components", "b")
         move("rocket-control-unit-tracker", "rocket-components", mods["space-age"] and "b2" or "c2")
@@ -575,6 +591,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("gimbaled-rocket-engine", "rocket-components", "d")
 
         move("rocket-fuel", "rocket-components", "e")
+        move("rocket-fuel-aluminum", "rocket-components", "e1")
         move("rocket-fuel-from-jelly", "rocket-components", "e2")
         move("ammonia-rocket-fuel", "rocket-components", "e3")
         move("maraxsis-hydrolox-rocket-fuel", "rocket-components", "e4")
@@ -589,7 +606,6 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("ll-used-rocket-part-recycling", "rocket-components", "z")
 
         move_subgroup("ll-packed-rocket-ingredients", "intermediate-products", "h3")
-
     end
 
     if mods["scrap-industry"] then
