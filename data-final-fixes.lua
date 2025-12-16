@@ -144,7 +144,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("ll-rocket-fuel", "fluid-chemicals", "c4")
     move("organotins", "fluid-chemicals", "d")
     move("simple-nitric-acid", "fluid-chemicals", "e")
-    move("nitric-acid", "fluid-chemicals", "f")
+    move("pf-nitric-acid", "fluid-chemicals", "f")
     move("sulfuric-acid", "fluid-chemicals", "g")
     move("lubricant", "fluid-chemicals", "h")
 
@@ -316,7 +316,8 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("advanced-circuit-from-scrap", "circuits", "b-ca")
     move("processing-unit", "circuits", "b-d")
     move("processing-unit-from-scrap", "circuits", "b-da")
-    move("paracelsin-processing-units-from-nitric-acid", "circuits", "b-da")
+    move("paracelsin-processing-units-from-nitric-acid", "circuits", "b-db")
+    move("cerys-processing-units-from-nitric-acid", "circuits", "b-dc")
     move("ll-quantum-processor", "circuits", "b-e")
     move("quantum-processor", "circuits", "b-f")
 
@@ -438,7 +439,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("zirconium-in-foundry", "foundry-casting-plates", "g")
         move("casting-gold", "foundry-casting-plates", "h")
         move("titanium-in-foundry", "foundry-casting-plates", "i")
-        move("aluminum-casting", "foundry-casting-plates", "j")
+        move("casting-aluminum", "foundry-casting-plates", "j")
 
         move("casting-iron-gear-wheel", "foundry-casting-items", "a")
         move("casting-flywheel", "foundry-casting-items", "b")
@@ -451,6 +452,9 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("casting-pipe-flange", "foundry-casting-items", "i")
         move("casting-pipe", "foundry-casting-items", "j")
         move("casting-pipe-to-ground", "foundry-casting-items", "k")
+
+        move_subgroup("cerys-processes", "resource-processing", "sa-b-b")
+        move_subgroup("plutonium-processing", "resource-processing", "sa-b-c")
 
         move("scrap", "holmium", "a")
         move("scrap-recycling", "holmium", "aa")
