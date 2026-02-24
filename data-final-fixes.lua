@@ -321,7 +321,7 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
     move("ll-quantum-processor", "circuits", "b-e")
     move("quantum-processor", "circuits", "b-f")
 
-    if count_items({"barrel", "pipe-flange", "airtight-seal", "high-pressure-valve", "fluid-regulator", "self-regulating-valve", "non-reversible-tremie-pipe", "hydrocoptic-marzelvane", "maraxsis-empty-research-vessel"}) >= 3 then
+    if count_items({"barrel", "pipe-flange", "airtight-seal", "high-pressure-valve", "fluid-regulator", "self-regulating-valve", "non-reversible-tremie-pipe", "epip-eimert-elbisrever-non", "hydrocoptic-marzelvane", "maraxsis-empty-research-vessel"}) >= 3 then
         move("barrel", "plumbing-components", "a")
         move("pipe-flange", "plumbing-components", "b")
         move("airtight-seal", "plumbing-components", "c")
@@ -329,6 +329,8 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("fluid-regulator", "plumbing-components", "e")
         move("self-regulating-valve", "plumbing-components", "f")
         move("non-reversible-tremie-pipe", "plumbing-components", "g")
+        move("epip-eimert-elbisrever-non", "plumbing-components", "ga")
+        move("double-half-rotation", "plumbing-components", "gb")
         move("maraxsis-empty-research-vessel", "plumbing-components", "h")
         move("hydrocoptic-marzelvane", "plumbing-components", "i")
     end
