@@ -39,4 +39,8 @@ end
 if mods["quality"] and misc.last_pf_mod == "pf-functions" then
     rm.FixStackingRecycling()
     require("__quality__/data-updates.lua")
+
+    rm.SortScrapProducts("scrap-recycling")
+    rm.SortScrapProducts("cerys-nuclear-scrap-recycling")
+    rm.SortScrapProducts("ancient-military-wreckage-recycling")
 end

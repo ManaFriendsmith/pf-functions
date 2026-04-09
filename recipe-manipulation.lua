@@ -412,6 +412,39 @@ local function FixStackingRecycling()
   end
 end
 
+local function SortScrapProducts(recipe)
+  if type(recipe) == "string" then
+    recipe = data.raw.recipe[recipe]
+  end
+  if recipe then
+    local products_out = {}
+    for k, v in pairs(recipe.results) do
+      v.yield = v.amount or (((v.amount_min + v.amount_max) / 2) or 1)
+      v.yield = v.yield * (v.probability or 1)
+      if v.extra_count_fraction then
+        v.yield = v.extra_count_fraction * (v.probability or 1)
+      end
+      local index = 1
+      while index < #products_out do
+        if v.yield > products_out[index].yield then
+          table.insert(products_out, index, v)
+          index = #products_out + 1000
+        end
+        index = index + 1
+      end
+      if index < #products_out + 1000 then
+        table.insert(products_out, v)
+      end
+    end
+
+    for k, v in pairs(products_out) do
+      v.yield = 0
+    end
+    recipe.results = products_out
+
+  end
+end
+
 rm.FindIngredientInList = FindIngredientInList
 rm.StandardizeRecipe = StandardizeRecipe
 rm.GetIngredientCount = GetIngredientCount
@@ -425,5 +458,6 @@ rm.AddRecipeCategory = AddRecipeCategory
 rm.RemoveRecipeCategory = RemoveRecipeCategory
 rm.AddLaserMillData = AddLaserMillData
 rm.FixStackingRecycling = FixStackingRecycling
+rm.SortScrapProducts = SortScrapProducts
 
 return rm
