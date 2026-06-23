@@ -36,9 +36,9 @@ if speed_item and efficiency_item and productivity_item and (quality_item or not
     end
 end
 
-if mods["quality"] and misc.last_pf_mod == "pf-functions" then
+if mods["recycler"] and misc.last_pf_mod == "pf-functions" then
     rm.FixStackingRecycling()
-    require("__quality__/data-updates.lua")
+    require("__recycler__/data-updates.lua")
 
     rm.SortScrapProducts("scrap-recycling")
     rm.SortScrapProducts("cerys-nuclear-scrap-recycling")

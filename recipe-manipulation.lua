@@ -143,7 +143,7 @@ local function AddProduct(recipe, ingredient, amount)
       name = ingredient,
       amount_min = amount or 1,
       amount_max = amount or 1,
-      probability = 1
+      independent_probability = 1
     }
   end
 
@@ -153,8 +153,8 @@ local function AddProduct(recipe, ingredient, amount)
     ingredient.amount_min = ingredient.amount
     ingredient.amount_max = ingredient.amount
   end
-  if not ingredient.probability then
-    ingredient.probability = 1
+  if not ingredient.independent_probability then
+    ingredient.independent_probability = 1
   end
 
   if not recipe.results then
@@ -164,7 +164,7 @@ local function AddProduct(recipe, ingredient, amount)
   local merged = false
 
   for k, v in pairs(recipe.results) do
-    if v.type == ingredient.type and v.name == ingredient.name and (v.probability or 1) == (ingredient.probability or 1) then
+    if v.type == ingredient.type and v.name == ingredient.name and (v.independent_probability or 1) == (ingredient.independent_probability or 1) then
       if v.type == "item" or v.temperature == ingredient.temperature or ingredient.temperature == nil then
         --The products match. Time to merge.
         merged = true
@@ -217,15 +217,15 @@ local function RemoveProduct(recipe, ingredient, amount)
       name = ingredient,
       amount_min = amount or 1,
       amount_max = amount or 1,
-      probability = 1
+      independent_probability = 1
     }
   end
   if ingredient.amount then
     ingredient.amount_min = ingredient.amount
     ingredient.amount_max = ingredient.amount
   end
-  if not ingredient.probability then
-    ingredient.probability = 1
+  if not ingredient.independent_probability then
+    ingredient.independent_probability = 1
   end
 
   if not recipe.results then
@@ -233,7 +233,7 @@ local function RemoveProduct(recipe, ingredient, amount)
   end
 
   for k, v in pairs(recipe.results) do
-    if v.type == ingredient.type and v.name == ingredient.name and (v.probability or 1) == ingredient.probability then
+    if v.type == ingredient.type and v.name == ingredient.name and (((v.independent_probability or 1) == ingredient.independent_probability) or ingredient.independent_probability == -1) then
       if v.type == "item" or v.temperature == ingredient.temperature or (ingredient.temperature == nil and v.temperature == misc.GetPrototype(v.name, "fluid").default_temperature) then
         --merge amounts
         if v.amount then
@@ -341,21 +341,16 @@ local function AddRecipeCategory(recipe, category)
   if not recipe then
     return
   end
-  if recipe.category == category then
-    return
-  end
-  for k, v in pairs(recipe.additional_categories or {}) do
+  for k, v in pairs(recipe.categories or {}) do
     if v == category then
       return
     end
   end
 
-  if recipe.category == nil then
-    recipe.category = category
-  elseif recipe.additional_categories then
-    table.insert(recipe.additional_categories, category)
+  if recipe.categories then
+    table.insert(recipe.categories, category)
   else
-    recipe.additional_categories = {category}
+    recipe.categories = {"crafting", category}
   end
 end
 
@@ -367,26 +362,18 @@ local function RemoveRecipeCategory(recipe, category)
     return
   end
 
-  if recipe.category == category then
-    recipe.category = nil
-  end
-  if recipe.additional_categories then
+  if recipe.categories then
     local index = 1
-    while index <= #recipe.additional_categories do
-      if recipe.additional_categories[index] == category then
-        table.remove(recipe.additional_categories, index)
+    while index <= #recipe.categories do
+      if recipe.categories[index] == category then
+        table.remove(recipe.categories, index)
         index = 1
       else
         index = index + 1
       end
     end
-  end
-
-  if recipe.category == nil then
-    if recipe.additional_categories and #recipe.additional_categories > 0 then
-      recipe.category = recipe.additional_categories[1]
-      table.remove(recipe.additional_categories, 1)
-    end
+  elseif category == "crafting" then
+    recipe.categories = {}
   end
 end
 
@@ -420,9 +407,9 @@ local function SortScrapProducts(recipe)
     local products_out = {}
     for k, v in pairs(recipe.results) do
       v.yield = v.amount or (((v.amount_min + v.amount_max) / 2) or 1)
-      v.yield = v.yield * (v.probability or 1)
+      v.yield = v.yield * (v.independent_probability or 1)
       if v.extra_count_fraction then
-        v.yield = v.extra_count_fraction * (v.probability or 1)
+        v.yield = v.extra_count_fraction * (v.independent_probability or 1)
       end
       local index = 1
       while index < #products_out do

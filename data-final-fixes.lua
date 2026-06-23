@@ -241,7 +241,8 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("lead-expansion-bolt", "structural-components", "b")
         if misc.difficulty < 3 and mods["BrassTacksMk2"] then
             move("galvanized-steel-plate", "structural-components", "b2")
-            move("blast-galvanized-steel-plate", "structural-components", "b3")
+            move("hot-dip-galvanized-steel", "structural-components", "b3")
+            move("blast-galvanized-steel-plate", "structural-components", "b4")
         end
         move("malleable-logarithmic-casing", "structural-components", "c")
         move("loadbearing-lattice", "structural-components", "d")
@@ -418,10 +419,10 @@ if settings.startup["planetfall-reorganize-crafting-menu"].value then
         move("titanium-ore-from-stone", "foundry-misc", "q")
         move("titanium-sublimation", "foundry-misc", "r")
 
-        move("molten-iron", "foundry-melting", "a")
-        move("molten-copper", "foundry-melting", "b")
-        move("molten-zinc", "foundry-melting", "c")
-        move("molten-nickel", "foundry-melting", "d")
+        move("iron-ore-melting", "foundry-melting", "a")
+        move("copper-ore-melting", "foundry-melting", "b")
+        move("zinc-ore-melting", "foundry-melting", "c")
+        move("nickel-ore-melting", "foundry-melting", "d")
         move("molten-lead", "foundry-melting", "e")
         move("molten-tin", "foundry-melting", "f")
         move("molten-gold", "foundry-melting", "g")
