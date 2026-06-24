@@ -399,6 +399,27 @@ local function FixStackingRecycling()
   end
 end
 
+local function RegenerateRecyclingRecipes()
+  if mods["recycler"] then
+    local reclib = require("__recycler__/recycling")
+    for k, v in pairs(data.raw.recipe) do
+      if v.auto_recycle ~= false then
+        reclib.generate_recycling_recipe(v)
+      end
+    end
+
+    for k, v in pairs(defines.prototypes.item) do
+      if data.raw[k] then
+        for k2, v2 in pairs(data.raw[k]) do
+          if (not data.raw.recipe[v2.name .. "-recycling"]) and (v2.auto_recycle ~= false) and (not v2.parameter) and (not string.find(item.name, "-barrel")) then
+            reclib.generate_self_recycling_recipe(v2)
+          end
+        end
+      end
+    end
+  end
+end
+
 local function SortScrapProducts(recipe)
   if type(recipe) == "string" then
     recipe = data.raw.recipe[recipe]
@@ -446,5 +467,6 @@ rm.RemoveRecipeCategory = RemoveRecipeCategory
 rm.AddLaserMillData = AddLaserMillData
 rm.FixStackingRecycling = FixStackingRecycling
 rm.SortScrapProducts = SortScrapProducts
+rm.RegenerateRecyclingRecipes = RegenerateRecyclingRecipes
 
 return rm
