@@ -411,7 +411,7 @@ local function RegenerateRecyclingRecipes()
     for k, v in pairs(defines.prototypes.item) do
       if data.raw[k] then
         for k2, v2 in pairs(data.raw[k]) do
-          if (not data.raw.recipe[v2.name .. "-recycling"]) and (v2.auto_recycle ~= false) and (not v2.parameter) and (not string.find(item.name, "-barrel")) then
+          if (not data.raw.recipe[v2.name .. "-recycling"]) and (v2.auto_recycle ~= false) and (not v2.parameter) and (not string.find(v2.name, "-barrel")) then
             reclib.generate_self_recycling_recipe(v2)
           end
         end
